@@ -19,8 +19,8 @@ type Config struct {
 	Cleanup            int      `json:"cleanup" yaml:"cleanup" toml:"cleanup"`
 	AddStatusHeader    bool     `json:"addStatusHeader" yaml:"addStatusHeader" toml:"addStatusHeader"`
 	CacheQueryParams   bool     `json:"cacheQueryParams" yaml:"cacheQueryParams" toml:"cacheQueryParams"`
-	BlacklistedHeaders []string `json:"blacklistedHeaders" yaml:"blacklistedHeaders" toml:"blacklistedHeaders"`
 	ForceNoCacheHeader bool     `json:"forceNoCacheHeader" yaml:"forceNoCacheHeader" toml:"forceNoCacheHeader"`
+	BlacklistedHeaders []string `json:"blacklistedHeaders" yaml:"blacklistedHeaders" toml:"blacklistedHeaders"`
 }
 
 // CreateConfig returns a config instance.
@@ -30,8 +30,8 @@ func CreateConfig() *Config {
 		Cleanup:            int((5 * time.Minute).Seconds()),
 		AddStatusHeader:    true,
 		CacheQueryParams:   false,
-		BlacklistedHeaders: []string{},
 		ForceNoCacheHeader: false,
+		BlacklistedHeaders: []string{},
 	}
 }
 
@@ -114,6 +114,7 @@ func (m *cache) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			if m.cfg.ForceNoCacheHeader {
 				w.Header().Set("Cache-Control", "no-cache")
 			}
+			w.Header().Set("X-CACHE-HEADER", "test")
 			w.WriteHeader(data.Status)
 			_, _ = w.Write(data.Body)
 
