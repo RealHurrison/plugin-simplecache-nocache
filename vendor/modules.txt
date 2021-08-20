@@ -1,0 +1,4 @@
+# github.com/pquerna/cachecontrol v0.1.0
+## explicit
+github.com/pquerna/cachecontrol
+github.com/pquerna/cachecontrol/cacheobject
