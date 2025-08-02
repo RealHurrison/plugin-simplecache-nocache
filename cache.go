@@ -82,6 +82,7 @@ type cacheData struct {
 
 // ServeHTTP serves an HTTP request.
 func (m *cache) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	println(r.URL.RawPath)
 	cs := cacheMissStatus
 
 	for _, header := range m.cfg.BlacklistedHeaders {
