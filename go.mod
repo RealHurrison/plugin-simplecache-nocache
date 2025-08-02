@@ -1,4 +1,4 @@
-module github.com/scrazy77/plugin-simplecache-nocache
+module github.com/RealHurrison/plugin-simplecache-nocache
 
 go 1.15
 
